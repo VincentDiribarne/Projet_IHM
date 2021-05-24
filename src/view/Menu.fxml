@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #717272;" stylesheets="@../controller/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #717272;" stylesheets="@../controller/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#444a4d" height="37.0" layoutX="-114.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="978.0" />
       <TextField fx:id="addPlayer" layoutX="36.0" layoutY="414.0" prefHeight="37.0" prefWidth="228.0" promptText="Enter a player here" style="-fx-background-color: #606161; -fx-border-color: #da1717; -fx-border-radius: 5; -fx-font-family: Candara; -fx-font-size: 14;">
@@ -70,7 +70,7 @@
             <Font name="System Italic" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="lancement" layoutX="620.0" layoutY="369.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="97.0" style="-fx-background-color: #606161; -fx-background-radius: 15; -fx-border-color: white; -fx-border-radius: 7; -fx-cursor: hand;" stylesheets="@../controller/button.css" text="Launch" textFill="WHITE">
+      <Button fx:id="lancement" layoutX="620.0" layoutY="369.0" mnemonicParsing="false" onMouseClicked="#Lancement" prefHeight="50.0" prefWidth="97.0" style="-fx-background-color: #606161; -fx-background-radius: 15; -fx-border-color: white; -fx-border-radius: 7; -fx-cursor: hand;" stylesheets="@../controller/button.css" text="Launch" textFill="WHITE">
          <font>
             <Font name="Candara" size="20.0" />
          </font>
