@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #717272;" stylesheets="@../controller/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#444a4d" height="37.0" layoutX="-114.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1010.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#444a4d" height="37.0" layoutX="-114.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="978.0" />
       <TextField fx:id="addPlayer" layoutX="36.0" layoutY="414.0" prefHeight="37.0" prefWidth="228.0" promptText="Enter a player here" style="-fx-background-color: #606161; -fx-border-color: #da1717; -fx-border-radius: 5; -fx-font-family: Candara; -fx-font-size: 14;">
          <font>
             <Font name="Candara" size="14.0" />
@@ -24,7 +24,7 @@
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#606161" height="145.0" layoutX="571.0" layoutY="173.0" stroke="#da1717" strokeType="INSIDE" strokeWidth="1.5" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="195.0" />
-      <Label layoutX="258.0" layoutY="33.0" prefHeight="65.0" prefWidth="285.0" text="Zombie Dice" textAlignment="CENTER" textFill="#6f0a0a">
+      <Label layoutX="258.0" layoutY="33.0" prefHeight="65.0" prefWidth="285.0" text="Zombie Dice" textAlignment="CENTER" textFill="#da1717">
          <font>
             <Font name="Candara" size="54.0" />
          </font>
