@@ -1,0 +1,47 @@
+.list-view {
+    -fx-background-radius: 5;
+}
+
+.list-cell,
+.list-cell::focused {
+    -fx-border-radius: 10;
+    -fx-font-size: 14.0;
+    -fx-font-family: 'Candara';
+}
+
+.list-view .list-cell:even {
+    -fx-background-color: #808080;
+    -fx-text-fill: white;
+    -fx-font-size: 14.0;
+    -fx-font-family: 'Candara';
+}
+
+.list-view .list-cell:odd {
+    -fx-background-color: #808080;
+    -fx-text-fill: white;
+    -fx-font-size: 14.0;
+    -fx-font-family: 'Candara';
+}
+
+#addPlayer {
+    -fx-text-fill: white;
+    -fx-text-font-family: 'Candara';
+    -fx-highlight-fill: derive(white, -20%);
+    -fx-highlight-text-fill: white;
+    -fx-prompt-text-fill: derive(white, -30%);
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border), linear-gradient(from 0px 0px to 0px 5px, derive(white, -9%), white);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 3, 2;
+    -fx-cursor: text;
+    -fx-padding: 0.333333em 0.583em 0.333333em 0.583em;
+}
+
+#addPlayer:focused {
+    -fx-highlight-fill: -fx-accent;
+    -fx-text-font-family: 'Candara';
+    -fx-highlight-text-fill: white;
+    -fx-background-color: -fx-focus-color, white, -fx-faint-focus-color, linear-gradient(from 0px 0px to 0px 5px, derive(white, -9%), white);
+    -fx-background-insets: -0.2, 1, -1.4, 3;
+    -fx-background-radius: 3, 2, 4, 0;
+    -fx-prompt-text-fill: transparent;
+}

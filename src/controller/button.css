@@ -1,0 +1,16 @@
+#fermeture {
+    -fx-background-color: #444a4d;
+}
+
+#fermeture:hover {
+    -fx-background-color: red;
+}
+
+#lancement:hover {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+
+#Ad:hover {
+    -fx-text-fill: red;
+}
