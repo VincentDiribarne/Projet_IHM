@@ -17,6 +17,10 @@
     -fx-font-size: 20px;
 }
 
+#Ad {
+    -fx-text-fill: white;
+}
+
 #Ad:hover {
     -fx-text-fill: red;
 }
