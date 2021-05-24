@@ -6,9 +6,15 @@
     -fx-background-color: red;
 }
 
+#lancement {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
 #lancement:hover {
     -fx-text-fill: red;
     -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
 
 #Ad:hover {
