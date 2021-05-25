@@ -13,7 +13,7 @@
 <AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #717272;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#444a4d" height="36.0" layoutX="-89.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="978.0" />
-      <Button fx:id="fermeture" alignment="CENTER" layoutX="760.0" layoutY="-4.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" style="-fx-cursor: hand;" stylesheets="@../controller/button.css" text="X" textAlignment="CENTER" textFill="#f8f8f8" wrapText="true">
+      <Button fx:id="fermeture" alignment="CENTER" layoutX="760.0" layoutY="-4.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" style="-fx-cursor: hand;" stylesheets="@button.css" text="X" textAlignment="CENTER" textFill="#f8f8f8" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
