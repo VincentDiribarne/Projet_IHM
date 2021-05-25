@@ -1,7 +1,6 @@
 package model;
 
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;

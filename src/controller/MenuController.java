@@ -46,6 +46,8 @@ public class MenuController {
         r2.setToggleGroup(toggle);
         r3.setToggleGroup(toggle);
         r1.setSelected(true);
+        if
+
     }
 
     @FXML
