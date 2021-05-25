@@ -40,7 +40,7 @@
             <Font name="Candara" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton id="radio1" fx:id="r3" layoutX="590.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#Difficulty" style="-fx-cursor: hand;" text="Hard" textFill="#f2f2f2">
+         <RadioButton id="radio1" fx:id="r3" layoutX="590.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#Difficulty" style="-fx-cursor: hand;" text="Hard" textFill="#f2f2f2">
          <font>
             <Font name="Candara" size="14.0" />
          </font>
