@@ -3,7 +3,6 @@ package model;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Util {
@@ -14,11 +13,11 @@ public class Util {
         final Delta dragDelta = new Delta();
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                // record a delta distance for the drag and drop operation.
                 dragDelta.x = primaryStage.getX() - mouseEvent.getScreenX();
                 dragDelta.y = primaryStage.getY() - mouseEvent.getScreenY();
             }
         });
+
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
                 primaryStage.setX(mouseEvent.getScreenX() + dragDelta.x);
@@ -31,8 +30,9 @@ public class Util {
         public static int getMax(int[] array) {
             int max = 0;
             for (int i = 0; i < array.length; i++) {
-                if (array[i] > max)
+                if (array[i] > max) {
                     max = array[i];
+                }
             }
             return max;
         }

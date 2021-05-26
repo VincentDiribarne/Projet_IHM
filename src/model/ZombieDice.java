@@ -6,8 +6,11 @@ import java.util.Random;
 
 public class ZombieDice {
 
-    private ArrayList<Dice> de_valide;
+    private ArrayList<Dice> de_dispo;
+    private ArrayList<Dice> deMain;
     private ArrayList<Dice> deRetirer;
+    private ArrayList<Dice> Cerveau;
+
 
     private Enum.Difficulty difficulty;
     private ArrayList<Joueur> playersList;
@@ -15,13 +18,13 @@ public class ZombieDice {
     private boolean finScore;
     private boolean finPartie;
 
+
     public ZombieDice(Enum.Difficulty difficulty) {
         this.difficulty = difficulty;
         this.current_player_turn = 0;
         this.playersList = new ArrayList<>();
-        this.de_valide = new ArrayList<>();
+        this.de_dispo = new ArrayList<>();
         this.deRetirer = new ArrayList<>();
-
 
         int[] thresholds = {8, 3, 2};
 
@@ -35,14 +38,13 @@ public class ZombieDice {
             thresholds[2] = 4;
         }
 
-
         for (int i = 1; i < Util.Utilities.getMax(thresholds) + 1; i++) {
             if (i <= thresholds[0])
-                this.de_valide.add(new Dice("green"));
+                this.de_dispo.add(new Dice("green"));
             if (i <= thresholds[1])
-                this.de_valide.add(new Dice("yellow"));
+                this.de_dispo.add(new Dice("yellow"));
             if (i <= thresholds[2])
-                this.de_valide.add(new Dice("red"));
+                this.de_dispo.add(new Dice("red"));
         }
     }
 
@@ -65,22 +67,40 @@ public class ZombieDice {
         }
 
         for (int i = 0; i < this.deRetirer.size(); i++)
-            this.de_valide.add(this.deRetirer.remove(i));
+            this.de_dispo.add(this.deRetirer.remove(i));
 
         for (int i = 0; i < this.deRetirer.size(); i++)
-            this.de_valide.add(this.deRetirer.remove(i));
+            this.de_dispo.add(this.deRetirer.remove(i));
 
         return finPartie;
     }
 
-    public void takeDices() {
-        Random random = new Random();
+    public void takeDice() {
+        int aPrendre = -1;
+        int dices_to_take = 3 - this.deMain.size();
 
+        if(de_dispo.size() < dices_to_take) {
+            for (int i = Cerveau.size() - 1; i >= 0; i--){
+                de_dispo.add(Cerveau.remove(i));
+            }
+        }
+
+        Random random = new Random();
+        for(int i = 0; i < dices_to_take; i++) {
+            aPrendre = random.nextInt(de_dispo.size());
+            Dice aMettre = de_dispo.remove(aPrendre);
+            deMain.add(aMettre);
+        }
     }
 
+    public void RollDice() {
+        
+    }
+
+
     //Getters
-    public ArrayList<Dice> getDe_valide() {
-        return de_valide;
+    public ArrayList<Dice> getDe_dispo() {
+        return de_dispo;
     }
 
     public ArrayList<Dice> getDeRetirer() {

@@ -63,7 +63,7 @@
             <Image url="@../Ressources/dice_yellow.png" />
          </image>
       </ImageView>
-      <Button layoutX="84.0" layoutY="441.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: #606161; -fx-border-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Take Dice" textFill="WHITE">
+      <Button layoutX="84.0" layoutY="441.0" mnemonicParsing="false" onMouseClicked="#takeDices" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: #606161; -fx-border-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Roll Dice" textFill="WHITE">
          <font>
             <Font name="Candara" size="14.0" />
          </font></Button>
