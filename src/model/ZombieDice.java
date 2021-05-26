@@ -94,7 +94,9 @@ public class ZombieDice {
     }
 
     public void RollDice() {
-        
+        for (int i = 0; i < 3; i++) {
+            
+        }
     }
 
 
@@ -102,15 +104,12 @@ public class ZombieDice {
     public ArrayList<Dice> getDe_dispo() {
         return de_dispo;
     }
-
     public ArrayList<Dice> getDeRetirer() {
         return deRetirer;
     }
-
     public Enum.Difficulty getDifficulty() {
         return difficulty;
     }
-
     public ArrayList<Joueur> getPlayersList() {
         return playersList;
     }
@@ -118,7 +117,6 @@ public class ZombieDice {
     public int getCurrent_player_turn() {
         return current_player_turn;
     }
-
     public void addPlayers(List<String> names) {
         for (String name : names)
             this.playersList.add(new Joueur(name));
