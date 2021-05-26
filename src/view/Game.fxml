@@ -13,7 +13,7 @@
 <AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #717272;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#444a4d" height="36.0" layoutX="-89.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="978.0" />
-      <Button fx:id="fermeture" alignment="CENTER" layoutX="760.0" layoutY="-4.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" style="-fx-cursor: hand;" stylesheets="@button.css" text="X" textAlignment="CENTER" textFill="#f8f8f8" wrapText="true">
+      <Button fx:id="fermeture" alignment="CENTER" layoutX="760.0" layoutY="-4.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="36.0" prefWidth="46.0" style="-fx-cursor: hand;" stylesheets="@button.css" text="X" textAlignment="CENTER" textFill="#f8f8f8" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -63,22 +63,22 @@
             <Image url="@../Ressources/dice_yellow.png" />
          </image>
       </ImageView>
-      <Button layoutX="84.0" layoutY="441.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: #606161; -fx-border-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Take Dice" textFill="WHITE">
+      <Button layoutX="84.0" layoutY="441.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: #606161; -fx-border-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Take Dice" textFill="WHITE">
          <font>
             <Font name="Candara" size="14.0" />
          </font></Button>
-      <Text fx:id="current_player" fill="WHITE" layoutX="29.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player : Player Name" wrappingWidth="181.39495849609375">
+      <Text fx:id="currentPlayer" fill="WHITE" layoutX="29.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player : Player Name" wrappingWidth="181.39495849609375">
          <font>
             <Font name="Candara" size="14.0" />
          </font>
       </Text>
-      <Button layoutX="617.0" layoutY="441.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: #606161; -fx-border-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="End Turn" textFill="WHITE">
+      <Button layoutX="617.0" layoutY="441.0" mnemonicParsing="false" onMouseClicked="#stopTurn" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: #606161; -fx-border-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="End Turn" textFill="WHITE">
          <font>
             <Font name="Candara" size="14.0" />
          </font>
       </Button>
-      <Canvas fx:id="canvas_game" height="105.0" layoutX="182.0" layoutY="236.0" width="416.0" />
-      <Text fx:id="current_score" fill="WHITE" layoutX="29.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : 0" wrappingWidth="58.0">
+      <Canvas fx:id="canvasGame" height="105.0" layoutX="182.0" layoutY="236.0" width="416.0" />
+      <Text fx:id="currentScore" fill="WHITE" layoutX="29.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : 0" wrappingWidth="58.0">
          <font>
             <Font name="Candara" size="14.0" />
          </font>

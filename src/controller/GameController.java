@@ -2,8 +2,6 @@ package controller;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,51 +22,67 @@ public class GameController {
     private ZombieDice zombieDice;
     private GraphicsContext gc;
     private HashMap<String, Image> resources;
-    boolean winner;
 
     @FXML
-    private Text current_player;
+    private Text currentPlayer;
 
     @FXML
-    private Canvas canvas_game;
+    private Text currentScore;
 
     @FXML
-    private Text current_score;
+    private Canvas canvasGame;
 
     public void initialize() {
-        gc = canvas_game.getGraphicsContext2D();
+        gc = canvasGame.getGraphicsContext2D();
         resources = new HashMap<String, Image>();
         resources.put("dice_green", new Image("file:resources/dice_green.png"));
         resources.put("dice_yellow", new Image("file:resources/dice_yellow.png"));
         resources.put("dice_red", new Image("file:resources/dice_red.png"));
         resources.put("shotgun", new Image("file:resources/shotgun.png"));
         resources.put("brain", new Image("file:resources/brain.png"));
-        //Util.deplacementFenetre(root, primaryStage);
     }
 
-    public void setParameters(Enum.Difficulty diff, ObservableList<String> players) {
-        zombieDice = new ZombieDice(diff);
+    @FXML
+    private void close() {
+        Stage primaryStage = (Stage) canvasGame.getScene().getWindow();
+        primaryStage.close();
+    }
+
+    public void setParameters(Enum.Difficulty difficulty, ObservableList<String> players) {
+        zombieDice = new ZombieDice(difficulty);
         zombieDice.addPlayers((List<String>) players);
+        setPlayerText();
     }
 
     private void setPlayerText() {
-        String status = "Current player: " + zombieDice.getPlayers_list().get(zombieDice.getCurrent_player_turn()).getName();
-        String score = " Number of points: " + zombieDice.getPlayers_list().get(zombieDice.getCurrent_player_turn()).getTotalPoints();
-        current_player.setText(status);
-        current_score.setText(score);
+        int id = zombieDice.getCurrent_player_turn();
+        String nom = zombieDice.getPlayersList().get(id).getName();
+        int TotalPoint = zombieDice.getPlayersList().get(id).getTotalPoints();
+
+        String status = "Current player : " +nom;
+        String score = "Score : " +TotalPoint;
+        currentPlayer.setText(status);
+        currentScore.setText(score);
+    }
+
+    @FXML
+    public void stopTurn() {
+        gc.clearRect(0,0, canvasGame.getWidth(), canvasGame.getHeight());
+        if(!zombieDice.winner()) {
+            zombieDice.nextTurn();
+        }
+        setPlayerText();
     }
 
 
     public void score() throws IOException {
-        if (winner = true) {
             AnchorPane root = (AnchorPane) Main.getEndFXML().load();
             Scene scene = new Scene(root);
 
-            Stage primaryStage = (Stage) canvas_game.getScene().getWindow();
+            Stage primaryStage = (Stage) canvasGame.getScene().getWindow();
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
             Util.deplacementFenetre(root, primaryStage);
-        }
     }
 }
