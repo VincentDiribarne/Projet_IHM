@@ -9,10 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.*;
 import model.Enum;
-import model.Main;
-import model.Util;
-import model.ZombieDice;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -66,10 +64,10 @@ public class GameController {
     }
 
     @FXML
-    public void stopTurn() {
+    public void stopTurn() throws IOException  {
         gc.clearRect(0,0, canvasGame.getWidth(), canvasGame.getHeight());
-        if(!zombieDice.winner()) {
-            zombieDice.nextTurn();
+        if(!zombieDice.nextTurn()) {
+            score();
         }
         setPlayerText();
     }

@@ -10,8 +10,10 @@ public class ZombieDice {
     private ArrayList<Dice> deRetirer;
 
     private Enum.Difficulty difficulty;
-    private ArrayList<Joueur.Player> playersList;
+    private ArrayList<Joueur> playersList;
     private int current_player_turn;
+    private boolean finScore;
+    private boolean finPartie;
 
     public ZombieDice(Enum.Difficulty difficulty) {
         this.difficulty = difficulty;
@@ -20,7 +22,8 @@ public class ZombieDice {
         this.de_valide = new ArrayList<>();
         this.deRetirer = new ArrayList<>();
 
-        int[] thresholds = {8,3,2};
+
+        int[] thresholds = {8, 3, 2};
 
         if (this.difficulty == Enum.Difficulty.medium) {
             thresholds[0] = 6;
@@ -43,12 +46,22 @@ public class ZombieDice {
         }
     }
 
-    public void nextTurn() {
-        this.playersList.get(this.current_player_turn).validatePoints();
-        this.current_player_turn++;
+    public boolean nextTurn() {
+        int tour = this.current_player_turn;
+        Joueur list = this.playersList.get(tour);
+        list.validatePoints();
+        if(list.getScore() >= 13) {
+            finScore = true;
+        }
 
-        if (this.current_player_turn > this.playersList.size() - 1) {
-            this.current_player_turn = 0;
+        if(finScore && (this.playersList.size()-1 == tour)) {
+            finPartie = true;
+        }
+
+        tour++;
+
+        if (tour >= this.playersList.size()) {
+            tour = 0;
         }
 
         for (int i = 0; i < this.deRetirer.size(); i++)
@@ -56,6 +69,8 @@ public class ZombieDice {
 
         for (int i = 0; i < this.deRetirer.size(); i++)
             this.de_valide.add(this.deRetirer.remove(i));
+
+        return finPartie;
     }
 
     public void takeDices() {
@@ -76,7 +91,7 @@ public class ZombieDice {
         return difficulty;
     }
 
-    public ArrayList<Joueur.Player> getPlayersList() {
+    public ArrayList<Joueur> getPlayersList() {
         return playersList;
     }
 
@@ -85,7 +100,7 @@ public class ZombieDice {
     }
 
     public void addPlayers(List<String> names) {
-        for (String name: names)
-            this.playersList.add(new Joueur.Player(name));
+        for (String name : names)
+            this.playersList.add(new Joueur(name));
     }
 }
