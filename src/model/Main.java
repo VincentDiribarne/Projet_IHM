@@ -14,28 +14,54 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
+    public static FXMLLoader menuFXML;
+    public static FXMLLoader gameFXML;
+    public static FXMLLoader endFXML;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //Loader
+        endFXML = new FXMLLoader(getClass().getResource("../view/end.fxml"));
+        gameFXML = new FXMLLoader(getClass().getResource("../view/game.fxml"));
+        menuFXML = new FXMLLoader(getClass().getResource("../view/Menu.fxml"));
+
+        //Page de Menu
         StackPane root = new StackPane();
-        root.getChildren().add(FXMLLoader.load(getClass().getResource("../view/Menu.fxml")));
+        root.getChildren().add(menuFXML.load());
+
         Rectangle rect = new Rectangle(800,500);
-        rect.setArcHeight(10); //Permet de regler l'angle
-        rect.setArcWidth(10);  //Permet de regler l'angle
-        root.setClip(rect);  //Ne pas oublier, très important
-        Scene scene = new Scene(root, 800, 500); //Mettre la même taille qu'en haut
+        rect.setArcHeight(10);
+        rect.setArcWidth(10);
+        root.setClip(rect);
+
+        Scene scene = new Scene(root, 800, 500);
         scene.setFill(Color.TRANSPARENT);
 
         primaryStage.getIcons().add(new Image("./Ressources/Zombie.png"));
         primaryStage.setTitle("Zombie Dice");
+
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
+
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(500);
         primaryStage.setResizable(false);
+
         primaryStage.show();
         Util.deplacementFenetre(root, primaryStage);
     }
 
+    public static FXMLLoader getEndFXML() {
+        return endFXML;
+    }
+
+    public static FXMLLoader getGameFXML() {
+        return gameFXML;
+    }
+
+    public static FXMLLoader getMenuFXML() {
+        return menuFXML;
+    }
 
     public static void main(String[] args) {
         launch(args);

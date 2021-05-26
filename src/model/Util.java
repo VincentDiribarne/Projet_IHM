@@ -2,12 +2,13 @@ package model;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Util {
 
-    public static void deplacementFenetre(StackPane root, Stage primaryStage){
+    public static void deplacementFenetre(Pane root, Stage primaryStage){
         class Delta { double x, y; }
 
         final Delta dragDelta = new Delta();
@@ -24,6 +25,17 @@ public class Util {
                 primaryStage.setY(mouseEvent.getScreenY() + dragDelta.y);
             }
         });
+    }
+
+    public static class Utilities {
+        public static int getMax(int[] array) {
+            int max = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] > max)
+                    max = array[i];
+            }
+            return max;
+        }
     }
 
 
