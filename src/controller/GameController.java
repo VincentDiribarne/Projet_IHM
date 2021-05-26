@@ -63,6 +63,11 @@ public class GameController {
         currentScore.setText(score);
     }
 
+    public void lancerDes() {
+        zombieDice.takeDice();
+        zombieDice.RollDice();
+    }
+
     @FXML
     public void stopTurn() throws IOException  {
         gc.clearRect(0,0, canvasGame.getWidth(), canvasGame.getHeight());
