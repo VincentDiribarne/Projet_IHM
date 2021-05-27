@@ -1,5 +1,7 @@
 package model;
 
+import controller.GameController;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,7 +20,6 @@ public class ZombieDice {
     private int tourJoueur;
     private boolean finScore;
     private boolean finPartie;
-
 
     public ZombieDice(Enum.Difficulty difficulty) {
         this.difficulty = difficulty;
@@ -74,13 +75,11 @@ public class ZombieDice {
             tour = 0;
         }
 
-
-
         return finPartie;
     }
 
     public void takeDice() {
-        int aPrendre = -1;
+        int aPrendre;
         int DesAPrendre = 3 - this.DesDansLaMain.size();
 
         if (DesDisponible.size() < DesAPrendre) {
@@ -101,73 +100,42 @@ public class ZombieDice {
         Random random = new Random();
         int rd = random.nextInt(6);
         int id = this.tourJoueur;
-        ArrayList<Enum.DiceFaces> faces = new ArrayList<Enum.DiceFaces>();
-        ArrayList<Integer> a_enlever = new ArrayList<Integer>();
 
-        for (int i = 0; i < DesDansLaMain.size(); i++) {
-            faces.add(DesDansLaMain.get(i).getFaces().get(rd));
-            DesAuSol.add(DesDansLaMain.get(i));
+        for (int i = 2; i >= 0; i--) {
+            Enum.DiceFaces GenFaces = DesDansLaMain.get(i).getFaces().get(rd);
+            System.out.println("#"+i + " => " +GenFaces+ " de couleur " +DesDansLaMain.get(i).getColor());
 
-            System.out.println("#"+i + " => "+faces.get(i)+ " de couleur " +DesDansLaMain.get(i).getColor());
-
-            if (faces.get(i) != Enum.DiceFaces.pas) {
-                a_enlever.add(i);
-            }
-
-            if (faces.get(i) == Enum.DiceFaces.cerveau) {
+            if (GenFaces == Enum.DiceFaces.cerveau) {
                 this.playersList.get(id).addPointsTemp(1);
                 System.out.println("Cerveau => " +playersList.get(id).getScore_temp());
-                ListeCerveau.add(DesAuSol.get(i));
+                ListeCerveau.add(DesDansLaMain.remove(i));
             }
 
-            if (faces.get(i) == Enum.DiceFaces.fusil) {
+            if (GenFaces == Enum.DiceFaces.fusil) {
                 playersList.get(id).addOneShotgun();
+                DesDansLaMain.remove(i);
                 System.out.println("Shotgun =>" +playersList.get(id).getShotgun());
-                if(playersList.get(id).getShotgun() >= 3) {
-                    playersList.get(id).setScore_temp(0);
-                    playersList.get(id).setShotgun(0);
-                    nextTurn();
-                }
-            }
-        }
-        Collections.reverse(a_enlever);
-
-        if(a_enlever.size() > 0) {
-            for (Integer a_en: a_enlever) {
-                DesDansLaMain.add(DesAuSol.remove((int)a_en));
             }
         }
 
-
-        for(int i = 0; i < DesDansLaMain.size(); i++) {
-            DesDansLaMain.remove(i);
-            for (int v = 0; v < DesAuSol.size(); v++) {
-                DesAuSol.remove(v);
-            }
+        if (playersList.get(id).getShotgun() >= 3) {
+            playersList.get(id).setScore_temp(0);
+            playersList.get(id).setShotgun(0);
+            nextTurn();
         }
+
+        if (playersList.get(id).getScore_temp() >= 13) {
+            nextTurn();
+        }
+        System.out.println(DesDansLaMain.size());
     }
 
     public void reset() {
-        for (int a = ListeCerveau.size() - 1; a >= 0; a--) {
-            ListeCerveau.remove(a);
-        }
-        for (int b = DesDansLaMain.size() - 1; b >= 0; b--) {
-            DesDansLaMain.remove(b);
-        }
-
-        for (int c = DesAuSol.size() - 1; c >= 0; c--) {
-            DesAuSol.remove(c);
-        }
-
-        for (int d = DesDisponible.size() - 1; d >= 0; d--) {
-            DesDisponible.remove(d);
-        }
-        for (int e =)
+        ListeCerveau.clear();
+        DesAuSol.clear();
+        DesDisponible.clear();
+        DesDansLaMain.clear();
         ajoutDes();
-        System.out.println(ListeCerveau.size());
-        System.out.println(DesDisponible.size());
-        System.out.println(DesAuSol.size());
-        System.out.println(DesDansLaMain.size());
     }
 
     //Getters

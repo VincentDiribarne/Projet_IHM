@@ -14,7 +14,6 @@ import model.Enum;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 public class GameController {
     private ZombieDice zombieDice;
@@ -28,11 +27,17 @@ public class GameController {
     private Text currentScore;
 
     @FXML
+    private Text tempScore;
+
+    @FXML
+    private Text tempShotgun;
+
+    @FXML
     private Canvas canvasGame;
 
     public void initialize() {
         gc = canvasGame.getGraphicsContext2D();
-        resources = new HashMap<String, Image>();
+        resources = new HashMap<>();
         resources.put("dice_green", new Image("file:resources/dice_green.png"));
         resources.put("dice_yellow", new Image("file:resources/dice_yellow.png"));
         resources.put("dice_red", new Image("file:resources/dice_red.png"));
@@ -48,7 +53,7 @@ public class GameController {
 
     public void setParameters(Enum.Difficulty difficulty, ObservableList<String> players) {
         zombieDice = new ZombieDice(difficulty);
-        zombieDice.addPlayers((List<String>) players);
+        zombieDice.addPlayers(players);
         setPlayerText();
     }
 
@@ -63,13 +68,23 @@ public class GameController {
         currentScore.setText(score);
     }
 
+    public void setShotgunCervo() {
+        int id = zombieDice.getTourJoueur();
+        int shotgun = zombieDice.getPlayersList().get(id).getShotgun();
+        int cervo = zombieDice.getPlayersList().get(id).getScore_temp();
+        tempScore.setText(String.valueOf(cervo));
+        tempShotgun.setText(String.valueOf(shotgun));
+    }
+
     public void lancerDes() {
         zombieDice.takeDice();
         zombieDice.RollDice();
+        setShotgunCervo();
+        setPlayerText();
     }
 
     @FXML
-    public void stopTurn() throws IOException  {
+    public void stopTurn() throws IOException{
         gc.clearRect(0,0, canvasGame.getWidth(), canvasGame.getHeight());
         if(!zombieDice.nextTurn()) {
             score();
@@ -78,8 +93,8 @@ public class GameController {
     }
 
 
-    public void score() throws IOException {
-            AnchorPane root = (AnchorPane) Main.getEndFXML().load();
+    public void score() throws IOException{
+            AnchorPane root = Main.getEndFXML().load();
             Scene scene = new Scene(root);
 
             Stage primaryStage = (Stage) canvasGame.getScene().getWindow();

@@ -33,7 +33,7 @@
             <Image url="@../Ressources/brain.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="112.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.6904296875">
+      <Text fx:id="tempScore" fill="WHITE" layoutX="112.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.6904296875">
          <font>
             <Font name="Candara" size="24.0" />
          </font>
@@ -43,7 +43,7 @@
             <Image url="@../Ressources/shotgun.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="107.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.6904296875">
+      <Text fx:id="tempShotgun" fill="WHITE" layoutX="107.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.6904296875">
          <font>
             <Font name="Candara" size="24.0" />
          </font>

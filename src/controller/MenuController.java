@@ -1,17 +1,10 @@
 package controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.Enum;
 import model.Main;
@@ -82,7 +75,7 @@ public class MenuController implements Initializable {
     @FXML
     private void Lancement() throws IOException {
         if (playerList.getItems().size() > 1) {
-            AnchorPane root = (AnchorPane) Main.getGameFXML().load();
+            AnchorPane root = Main.getGameFXML().load();
             Scene scene = new Scene(root);
 
             GameController gController = Main.getGameFXML().getController();
