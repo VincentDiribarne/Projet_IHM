@@ -33,7 +33,7 @@
             <Image url="@../Ressources/brain.png" />
          </image>
       </ImageView>
-      <Text fx:id="tempScore" fill="WHITE" layoutX="112.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.6904296875">
+      <Text fx:id="tempScore" fill="WHITE" layoutX="113.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="40.0">
          <font>
             <Font name="Candara" size="24.0" />
          </font>
@@ -43,7 +43,7 @@
             <Image url="@../Ressources/shotgun.png" />
          </image>
       </ImageView>
-      <Text fx:id="tempShotgun" fill="WHITE" layoutX="107.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="15.6904296875">
+      <Text fx:id="tempShotgun" fill="WHITE" layoutX="113.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="40.0">
          <font>
             <Font name="Candara" size="24.0" />
          </font>
@@ -77,10 +77,20 @@
             <Font name="Candara" size="14.0" />
          </font>
       </Button>
-      <Canvas fx:id="canvasGame" height="105.0" layoutX="182.0" layoutY="236.0" width="416.0" />
-      <Text fx:id="currentScore" fill="WHITE" layoutX="29.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : 0" wrappingWidth="58.0">
+      <Canvas fx:id="canvasGame" height="105.0" layoutX="201.0" layoutY="234.0" width="416.0" />
+      <Text fx:id="currentScore" fill="WHITE" layoutX="31.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : 0" wrappingWidth="69.0">
          <font>
             <Font name="Candara" size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="dernierTour" fill="RED" layoutX="286.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="207.13671875">
+         <font>
+            <Font name="Candara" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="finShotgun" fill="RED" layoutX="31.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="131.13671875">
+         <font>
+            <Font size="14.0" />
          </font>
       </Text>
    </children>

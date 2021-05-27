@@ -33,6 +33,12 @@ public class GameController {
     private Text tempShotgun;
 
     @FXML
+    private Text dernierTour;
+
+    @FXML
+    private Text finShotgun;
+
+    @FXML
     private Canvas canvasGame;
 
     public void initialize() {
@@ -59,8 +65,10 @@ public class GameController {
 
     private void setPlayerText() {
         int id = zombieDice.getTourJoueur();
+        System.out.println(id);
         String nom = zombieDice.getPlayersList().get(id).getName();
-        int TotalPoint = zombieDice.getPlayersList().get(id).getTotalPoints();
+        System.out.println(nom);
+        int TotalPoint = zombieDice.getPlayersList().get(id).getScore();
 
         String status = "Current player : " +nom;
         String score = "Score : " +TotalPoint;
@@ -77,16 +85,29 @@ public class GameController {
     }
 
     public void lancerDes() {
+        clear();
         zombieDice.takeDice();
         zombieDice.RollDice();
         setShotgunCervo();
+        if (zombieDice.isShotgun()) {
+            finShotgun.setText("Vous avez eu 3 fusil et perdu tous les cerveaux, triste !");
+        }
+
+        if (zombieDice.isDernierTour()) {
+            dernierTour.setText("Dernier Tour !");
+        }
         setPlayerText();
+    }
+
+    private void clear() {
+        currentScore.setText("0");
+        finShotgun.setText(" ");
     }
 
     @FXML
     public void stopTurn() throws IOException{
         gc.clearRect(0,0, canvasGame.getWidth(), canvasGame.getHeight());
-        if(!zombieDice.nextTurn()) {
+        if (zombieDice.nextTurn() == true) {
             score();
         }
         setPlayerText();
