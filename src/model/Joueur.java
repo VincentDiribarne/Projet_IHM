@@ -6,14 +6,12 @@ public class Joueur {
     private int score_temp;
     private int shotgun;
     private String name;
-    private boolean hasFinished;
 
     public Joueur(String name) {
         this.name = name;
         this.score = 0;
         this.score_temp = 0;
         this.shotgun = 0;
-        this.hasFinished = false;
     }
 
     public int getScore() {
@@ -60,22 +58,8 @@ public class Joueur {
         this.score_temp += number;
     }
 
-    public boolean isHasFinished() {
-        return hasFinished;
-    }
-
-    public void setHasFinished(boolean hasFinished) {
-        this.hasFinished = hasFinished;
-    }
-
     public boolean addOneShotgun() {
         this.shotgun += 1;
-
-        if (this.shotgun > 2) {
-            this.shotgun = 0;
-            this.score_temp = 0;
-            return true;
-        }
         return false;
     }
 

@@ -53,7 +53,7 @@ public class GameController {
     }
 
     private void setPlayerText() {
-        int id = zombieDice.getCurrent_player_turn();
+        int id = zombieDice.getTourJoueur();
         String nom = zombieDice.getPlayersList().get(id).getName();
         int TotalPoint = zombieDice.getPlayersList().get(id).getTotalPoints();
 

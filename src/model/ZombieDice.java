@@ -7,35 +7,39 @@ import java.util.Random;
 
 public class ZombieDice {
 
-    private ArrayList<Dice> de_dispo;
-    private ArrayList<Dice> deMain;
-    private ArrayList<Dice> deRetirer;
-    private ArrayList<Dice> Cerveau;
+    private ArrayList<Dice> DesDisponible;
+    private ArrayList<Dice> DesDansLaMain;
+    private ArrayList<Dice> DesAuSol;
+    private ArrayList<Dice> ListeCerveau;
 
 
     private Enum.Difficulty difficulty;
     private ArrayList<Joueur> playersList;
-    private int current_player_turn;
+    private int tourJoueur;
     private boolean finScore;
     private boolean finPartie;
 
 
     public ZombieDice(Enum.Difficulty difficulty) {
         this.difficulty = difficulty;
-        this.current_player_turn = 0;
+        this.tourJoueur = 0;
         this.playersList = new ArrayList<>();
-        this.de_dispo = new ArrayList<>();
-        this.deRetirer = new ArrayList<>();
-        this.Cerveau = new ArrayList<>();
-        this.deMain = new ArrayList<>();
+        this.DesDisponible = new ArrayList<>();
+        this.DesAuSol = new ArrayList<>();
+        this.ListeCerveau = new ArrayList<>();
+        this.DesDansLaMain = new ArrayList<>();
+        ajoutDes();
+    }
 
+    public void ajoutDes() {
         int[] thresholds = {8, 3, 2};
 
         if (this.difficulty == Enum.Difficulty.medium) {
             thresholds[0] = 6;
             thresholds[1] = 4;
             thresholds[2] = 3;
-        } else if (this.difficulty == Enum.Difficulty.hard) {
+        }
+        if (this.difficulty == Enum.Difficulty.hard) {
             thresholds[0] = 4;
             thresholds[1] = 5;
             thresholds[2] = 4;
@@ -43,16 +47,17 @@ public class ZombieDice {
 
         for (int i = 1; i < Util.Utilities.getMax(thresholds) + 1; i++) {
             if (i <= thresholds[0])
-                this.de_dispo.add(new Dice("green"));
+                this.DesDisponible.add(new Dice("green"));
             if (i <= thresholds[1])
-                this.de_dispo.add(new Dice("yellow"));
+                this.DesDisponible.add(new Dice("yellow"));
             if (i <= thresholds[2])
-                this.de_dispo.add(new Dice("red"));
+                this.DesDisponible.add(new Dice("red"));
         }
     }
 
     public boolean nextTurn() {
-        int tour = this.current_player_turn;
+        reset();
+        int tour = this.tourJoueur;
         Joueur list = this.playersList.get(tour);
         list.validatePoints();
         if (list.getScore() >= 13) {
@@ -69,76 +74,112 @@ public class ZombieDice {
             tour = 0;
         }
 
-        for (int i = 0; i < this.deRetirer.size(); i++)
-            this.de_dispo.add(this.deRetirer.remove(i));
 
-        for (int i = 0; i < this.deRetirer.size(); i++)
-            this.de_dispo.add(this.deRetirer.remove(i));
 
         return finPartie;
     }
 
     public void takeDice() {
         int aPrendre = -1;
-        int dices_to_take = 3 - this.deMain.size();
+        int DesAPrendre = 3 - this.DesDansLaMain.size();
 
-        if (de_dispo.size() < dices_to_take) {
-            for (int i = Cerveau.size() - 1; i >= 0; i--) {
-                de_dispo.add(Cerveau.remove(i));
+        if (DesDisponible.size() < DesAPrendre) {
+            for (int i = ListeCerveau.size() - 1; i >= 0; i--) {
+                DesDisponible.add(ListeCerveau.remove(i));
             }
         }
 
         Random random = new Random();
-        for (int i = 0; i < dices_to_take; i++) {
-            aPrendre = random.nextInt(de_dispo.size());
-            Dice aMettre = de_dispo.remove(aPrendre);
-            deMain.add(aMettre);
+        for (int i = 0; i < DesAPrendre; i++) {
+            aPrendre = random.nextInt(DesDisponible.size());
+            Dice aMettre = DesDisponible.remove(aPrendre);
+            DesDansLaMain.add(aMettre);
         }
     }
 
     public void RollDice() {
         Random random = new Random();
-        int id = this.current_player_turn;
+        int rd = random.nextInt(6);
+        int id = this.tourJoueur;
         ArrayList<Enum.DiceFaces> faces = new ArrayList<Enum.DiceFaces>();
         ArrayList<Integer> a_enlever = new ArrayList<Integer>();
 
-        for (int i = 0; i < 3; i++) {
-            faces.add(this.deMain.get(i).getFaces().get(random.nextInt(6)));
-            System.out.println(faces);
+        for (int i = 0; i < DesDansLaMain.size(); i++) {
+            faces.add(DesDansLaMain.get(i).getFaces().get(rd));
+            DesAuSol.add(DesDansLaMain.get(i));
 
-            if (faces.get(i) != Enum.DiceFaces.steps) {
+            System.out.println("#"+i + " => "+faces.get(i)+ " de couleur " +DesDansLaMain.get(i).getColor());
+
+            if (faces.get(i) != Enum.DiceFaces.pas) {
                 a_enlever.add(i);
             }
 
-            if (faces.get(i) == Enum.DiceFaces.brain) {
+            if (faces.get(i) == Enum.DiceFaces.cerveau) {
                 this.playersList.get(id).addPointsTemp(1);
-                System.out.println(playersList.get(id).getScore_temp());
-                Cerveau.add(deMain.remove(i));
-            } else if (faces.get(i) == Enum.DiceFaces.shotgun) {
-                System.out.println(playersList.get(id).getShotgun());
-                this.playersList.get(id).addOneShotgun();
-                if(playersList.get(id).getShotgun() > 2) {
+                System.out.println("Cerveau => " +playersList.get(id).getScore_temp());
+                ListeCerveau.add(DesAuSol.get(i));
+            }
+
+            if (faces.get(i) == Enum.DiceFaces.fusil) {
+                playersList.get(id).addOneShotgun();
+                System.out.println("Shotgun =>" +playersList.get(id).getShotgun());
+                if(playersList.get(id).getShotgun() >= 3) {
                     playersList.get(id).setScore_temp(0);
+                    playersList.get(id).setShotgun(0);
                     nextTurn();
                 }
             }
         }
         Collections.reverse(a_enlever);
 
-        System.out.println("Removing " + a_enlever.size() + " dices...");
-        for (Integer a_en: a_enlever) {
-            this.deRetirer.add(this.deMain.remove((int)a_en));
+        if(a_enlever.size() > 0) {
+            for (Integer a_en: a_enlever) {
+                DesDansLaMain.add(DesAuSol.remove((int)a_en));
+            }
+        }
+
+
+        for(int i = 0; i < DesDansLaMain.size(); i++) {
+            DesDansLaMain.remove(i);
+            for (int v = 0; v < DesAuSol.size(); v++) {
+                DesAuSol.remove(v);
+            }
         }
     }
 
+    public void reset() {
+        for (int a = ListeCerveau.size() - 1; a >= 0; a--) {
+            ListeCerveau.remove(a);
+        }
+        for (int b = DesDansLaMain.size() - 1; b >= 0; b--) {
+            DesDansLaMain.remove(b);
+        }
 
-    //Getters
-    public ArrayList<Dice> getDe_dispo() {
-        return de_dispo;
+        for (int c = DesAuSol.size() - 1; c >= 0; c--) {
+            DesAuSol.remove(c);
+        }
+
+        for (int d = DesDisponible.size() - 1; d >= 0; d--) {
+            DesDisponible.remove(d);
+        }
+        for (int e =)
+        ajoutDes();
+        System.out.println(ListeCerveau.size());
+        System.out.println(DesDisponible.size());
+        System.out.println(DesAuSol.size());
+        System.out.println(DesDansLaMain.size());
     }
 
-    public ArrayList<Dice> getDeRetirer() {
-        return deRetirer;
+    //Getters
+
+
+
+    public ArrayList<Dice> getDesDisponible() {
+        return DesDisponible;
+    }
+
+    public ArrayList<Dice> getDesAuSol() {
+        return DesAuSol;
     }
 
     public Enum.Difficulty getDifficulty() {
@@ -149,8 +190,8 @@ public class ZombieDice {
         return playersList;
     }
 
-    public int getCurrent_player_turn() {
-        return current_player_turn;
+    public int getTourJoueur() {
+        return tourJoueur;
     }
 
     public void addPlayers(List<String> names) {

@@ -8,8 +8,8 @@ public class Enum {
     }
 
     public enum DiceFaces {
-        brain,
-        shotgun,
-        steps;
+        cerveau,
+        fusil,
+        pas;
     }
 }

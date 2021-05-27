@@ -11,26 +11,26 @@ public class Dice {
                 this.color = color;
                 this.faces = new ArrayList<>();
                 if (color.toLowerCase() == "green") {
-                        this.faces.add(Enum.DiceFaces.brain);
-                        this.faces.add(Enum.DiceFaces.brain);
-                        this.faces.add(Enum.DiceFaces.brain);
-                        this.faces.add(Enum.DiceFaces.steps);
-                        this.faces.add(Enum.DiceFaces.steps);
-                        this.faces.add(Enum.DiceFaces.shotgun);
+                        this.faces.add(Enum.DiceFaces.cerveau);
+                        this.faces.add(Enum.DiceFaces.cerveau);
+                        this.faces.add(Enum.DiceFaces.cerveau);
+                        this.faces.add(Enum.DiceFaces.pas);
+                        this.faces.add(Enum.DiceFaces.pas);
+                        this.faces.add(Enum.DiceFaces.fusil);
                 } else if (color.toLowerCase() == "yellow") {
-                        this.faces.add(Enum.DiceFaces.brain);
-                        this.faces.add(Enum.DiceFaces.brain);
-                        this.faces.add(Enum.DiceFaces.steps);
-                        this.faces.add(Enum.DiceFaces.steps);
-                        this.faces.add(Enum.DiceFaces.shotgun);
-                        this.faces.add(Enum.DiceFaces.shotgun);
+                        this.faces.add(Enum.DiceFaces.cerveau);
+                        this.faces.add(Enum.DiceFaces.cerveau);
+                        this.faces.add(Enum.DiceFaces.pas);
+                        this.faces.add(Enum.DiceFaces.pas);
+                        this.faces.add(Enum.DiceFaces.fusil);
+                        this.faces.add(Enum.DiceFaces.fusil);
                 } else if (color.toLowerCase() == "red") {
-                        this.faces.add(Enum.DiceFaces.brain);
-                        this.faces.add(Enum.DiceFaces.steps);
-                        this.faces.add(Enum.DiceFaces.steps);
-                        this.faces.add(Enum.DiceFaces.shotgun);
-                        this.faces.add(Enum.DiceFaces.shotgun);
-                        this.faces.add(Enum.DiceFaces.shotgun);
+                        this.faces.add(Enum.DiceFaces.cerveau);
+                        this.faces.add(Enum.DiceFaces.pas);
+                        this.faces.add(Enum.DiceFaces.pas);
+                        this.faces.add(Enum.DiceFaces.fusil);
+                        this.faces.add(Enum.DiceFaces.fusil);
+                        this.faces.add(Enum.DiceFaces.fusil);
                 }
         }
 
