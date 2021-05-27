@@ -30,17 +30,17 @@
             <Font name="Candara" size="54.0" />
          </font>
       </Label>
-      <RadioButton fx:id="r1" layoutX="590.0" layoutY="218.0" mnemonicParsing="false" onMouseClicked="#Difficulty" style="-fx-cursor: hand;" text="Easy" textFill="WHITE">
+      <RadioButton fx:id="r1" layoutX="590.0" layoutY="218.0" mnemonicParsing="false" onMouseClicked="#Easy" style="-fx-cursor: hand;" text="Easy" textFill="WHITE">
          <font>
             <Font name="Candara" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="r2" layoutX="590.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#Difficulty" style="-fx-cursor: hand;" text="Medium" textFill="WHITE">
+      <RadioButton fx:id="r2" layoutX="590.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#Medium" style="-fx-cursor: hand;" text="Medium" textFill="WHITE">
          <font>
             <Font name="Candara" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton id="radio1" fx:id="r3" layoutX="590.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#Difficulty" style="-fx-cursor: hand;" text="Hard" textFill="#f2f2f2">
+         <RadioButton id="radio1" fx:id="r3" layoutX="590.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#Hard" style="-fx-cursor: hand;" text="Hard" textFill="#f2f2f2">
          <font>
             <Font name="Candara" size="14.0" />
          </font>
@@ -50,7 +50,7 @@
             <Font name="Candara Italic" size="16.0" />
          </font>
       </Label>
-      <ListView fx:id="playerList" layoutX="36.0" layoutY="169.0" prefHeight="200.0" prefWidth="228.0" style="-fx-background-color: #606161; -fx-border-radius: 5; -fx-border-color: #da1717;" />
+      <ListView fx:id="playerList" layoutX="36.0" layoutY="169.0" prefHeight="209.0" prefWidth="228.0" style="-fx-background-color: #606161; -fx-border-radius: 5; -fx-border-color: #da1717;" stylesheets="@index.css" />
       <Button fx:id="Ad" layoutX="218.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#Ajout" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #808080; -fx-border-color: white; -fx-border-radius: 5; -fx-cursor: hand;" stylesheets="@button.css" text="Add" textFill="WHITE" />
       <Label layoutX="43.0" layoutY="394.0" prefHeight="17.0" prefWidth="128.0" text="Add a player :" textFill="WHITE">
          <font>

@@ -4,12 +4,12 @@ public class Enum {
     public enum Difficulty {
         easy,
         medium,
-        hard;
+        hard
     }
 
     public enum DiceFaces {
-        brain,
-        shotgun,
-        steps;
+        cerveau,
+        fusil,
+        pas
     }
 }

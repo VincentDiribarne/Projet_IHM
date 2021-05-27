@@ -4,6 +4,7 @@
 
 .list-cell,
 .list-cell::focused {
+    -fx-background-color:  #606161;
     -fx-border-radius: 10;
     -fx-font-size: 14.0;
     -fx-font-family: 'Candara';
