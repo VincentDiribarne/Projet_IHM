@@ -1,23 +1,19 @@
 package model;
 
-import controller.GameController;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class ZombieDice {
 
-    private ArrayList<Dice> DesDisponible;
-    private ArrayList<Dice> DesDansLaMain;
-    private ArrayList<Dice> DesAuSol;
-    private ArrayList<Dice> ListeCerveau;
+    private final ArrayList<Dice> DesDisponible;
+    private final ArrayList<Dice> DesDansLaMain;
+    private final ArrayList<Dice> ListeCerveau;
 
 
-    private Enum.Difficulty difficulty;
-    private ArrayList<Joueur> playersList;
-    private int tourJoueur;
+    private final Enum.Difficulty difficulty;
+    private final ArrayList<Joueur> playersList;
+    private final int tourJoueur;
     private boolean finScore;
     private boolean finPartie;
 
@@ -26,7 +22,6 @@ public class ZombieDice {
         this.tourJoueur = 0;
         this.playersList = new ArrayList<>();
         this.DesDisponible = new ArrayList<>();
-        this.DesAuSol = new ArrayList<>();
         this.ListeCerveau = new ArrayList<>();
         this.DesDansLaMain = new ArrayList<>();
         ajoutDes();
@@ -132,28 +127,12 @@ public class ZombieDice {
 
     public void reset() {
         ListeCerveau.clear();
-        DesAuSol.clear();
         DesDisponible.clear();
         DesDansLaMain.clear();
         ajoutDes();
     }
 
     //Getters
-
-
-
-    public ArrayList<Dice> getDesDisponible() {
-        return DesDisponible;
-    }
-
-    public ArrayList<Dice> getDesAuSol() {
-        return DesAuSol;
-    }
-
-    public Enum.Difficulty getDifficulty() {
-        return difficulty;
-    }
-
     public ArrayList<Joueur> getPlayersList() {
         return playersList;
     }

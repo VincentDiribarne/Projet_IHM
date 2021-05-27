@@ -5,7 +5,7 @@ public class Joueur {
     private int score;
     private int score_temp;
     private int shotgun;
-    private String name;
+    private final String name;
 
     public Joueur(String name) {
         this.name = name;
@@ -16,10 +16,6 @@ public class Joueur {
 
     public int getScore() {
         return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public int getScore_temp() {
@@ -42,25 +38,16 @@ public class Joueur {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getTotalPoints() {
         return this.score + this.score_temp;
-    }
-
-    public void addPoints(int number) {
-        this.score += number;
     }
 
     public void addPointsTemp(int number) {
         this.score_temp += number;
     }
 
-    public boolean addOneShotgun() {
+    public void addOneShotgun() {
         this.shotgun += 1;
-        return false;
     }
 
     public void validatePoints() {
