@@ -10,14 +10,12 @@ public class ZombieDice {
     private final ArrayList<Dice> DesDansLaMain;
     private final ArrayList<Dice> ListeCerveau;
 
-
     private final Enum.Difficulty difficulty;
     private final ArrayList<Joueur> playersList;
     private int tourJoueur;
     private boolean finScore;
     private boolean finPartie;
-    private boolean dernierTour = false;
-    private boolean finShotgun = false;
+    private boolean finShotgun;
 
     public ZombieDice(Enum.Difficulty difficulty) {
         this.difficulty = difficulty;
@@ -32,12 +30,12 @@ public class ZombieDice {
     public void ajoutDes() {
         int[] thresholds = {8, 3, 2};
 
-        if (this.difficulty == Enum.Difficulty.medium) {
+        if (difficulty == Enum.Difficulty.medium) {
             thresholds[0] = 6;
             thresholds[1] = 4;
             thresholds[2] = 3;
         }
-        if (this.difficulty == Enum.Difficulty.hard) {
+        if (difficulty == Enum.Difficulty.hard) {
             thresholds[0] = 4;
             thresholds[1] = 5;
             thresholds[2] = 4;
@@ -53,11 +51,11 @@ public class ZombieDice {
         }
     }
 
-    public boolean nextTurn() {
+    public void nextTurn() {
         reset();
         Joueur list = this.playersList.get(tourJoueur);
         list.validatePoints();
-        if (list.getScore() >= 13) {
+        if (list.getTotalPoints() >= 13) {
             finScore = true;
         }
 
@@ -70,7 +68,6 @@ public class ZombieDice {
         if (tourJoueur >= this.playersList.size()) {
             tourJoueur = 0;
         }
-        return finPartie;
     }
 
     public void takeDice() {
@@ -92,24 +89,25 @@ public class ZombieDice {
     }
 
     public void RollDice() {
+        finShotgun = false;
         Random random = new Random();
         int rd = random.nextInt(6);
         int id = this.tourJoueur;
 
         for (int i = 2; i >= 0; i--) {
             Enum.DiceFaces GenFaces = DesDansLaMain.get(i).getFaces().get(rd);
-            //System.out.println("#"+i + " => " +GenFaces+ " de couleur " +DesDansLaMain.get(i).getColor());
+            System.out.println("#"+i + " => " +GenFaces+ " de couleur " +DesDansLaMain.get(i).getColor());
 
             if (GenFaces == Enum.DiceFaces.cerveau) {
                 this.playersList.get(id).addPointsTemp(1);
-                //System.out.println("Cerveau => " +playersList.get(id).getScore_temp());
+                System.out.println("Cerveau => " +playersList.get(id).getScore_temp());
                 ListeCerveau.add(DesDansLaMain.remove(i));
             }
 
             if (GenFaces == Enum.DiceFaces.fusil) {
                 playersList.get(id).addOneShotgun();
                 DesDansLaMain.remove(i);
-                //System.out.println("Shotgun =>" +playersList.get(id).getShotgun());
+                System.out.println("Shotgun =>" +playersList.get(id).getShotgun());
             }
         }
 
@@ -118,11 +116,6 @@ public class ZombieDice {
             playersList.get(id).setShotgun(0);
             nextTurn();
             finShotgun = true;
-        }
-
-        if (playersList.get(id).getScore_temp() >= 13) {
-            nextTurn();
-            dernierTour = true;
         }
 
         System.out.println(DesDansLaMain.size());
@@ -140,8 +133,12 @@ public class ZombieDice {
         return playersList;
     }
 
-    public boolean isDernierTour() {
-        return dernierTour;
+    public boolean isFinScore() {
+        return finScore;
+    }
+
+    public boolean isFinPartie() {
+        return finPartie;
     }
 
     public boolean isShotgun() {

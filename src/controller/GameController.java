@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -36,9 +37,6 @@ public class GameController {
     private Text dernierTour;
 
     @FXML
-    private Text finShotgun;
-
-    @FXML
     private Canvas canvasGame;
 
     public void initialize() {
@@ -65,9 +63,7 @@ public class GameController {
 
     private void setPlayerText() {
         int id = zombieDice.getTourJoueur();
-        System.out.println(id);
         String nom = zombieDice.getPlayersList().get(id).getName();
-        System.out.println(nom);
         int TotalPoint = zombieDice.getPlayersList().get(id).getScore();
 
         String status = "Current player : " +nom;
@@ -84,32 +80,49 @@ public class GameController {
         tempShotgun.setText(String.valueOf(shotgun));
     }
 
-    public void lancerDes() {
-        clear();
+    public void lancerDes() throws IOException {
         zombieDice.takeDice();
         zombieDice.RollDice();
         setShotgunCervo();
-        if (zombieDice.isShotgun()) {
-            finShotgun.setText("Vous avez eu 3 fusil et perdu tous les cerveaux, triste !");
-        }
+        setPlayerText();
+        Alert();
+        finScore();
+        finPartie();
+    }
 
-        if (zombieDice.isDernierTour()) {
+    public void Alert() {
+        if (zombieDice.isShotgun()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("BOOM");
+
+            // alert.setHeaderText("Results:");
+            alert.setContentText("BOOM, trois cerveau, t'es dead \nJoueur suivant");
+
+            alert.showAndWait();
+        }
+    }
+
+    public void finScore() {
+        if (zombieDice.isFinScore()) {
             dernierTour.setText("Dernier Tour !");
         }
-        setPlayerText();
     }
 
-    private void clear() {
-        currentScore.setText("0");
-        finShotgun.setText(" ");
+    public void finPartie() throws IOException {
+        if (zombieDice.isFinPartie()) {
+            score();
+        }
     }
+
 
     @FXML
     public void stopTurn() throws IOException{
         gc.clearRect(0,0, canvasGame.getWidth(), canvasGame.getHeight());
-        if (zombieDice.nextTurn() == true) {
-            score();
-        }
+        tempShotgun.setText("0");
+        tempScore.setText("0");
+        zombieDice.nextTurn();
+        finPartie();
+        finScore();
         setPlayerText();
     }
 
