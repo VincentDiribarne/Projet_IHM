@@ -10,12 +10,12 @@ public class ZombieDice {
     private final ArrayList<Dice> DesDansLaMain;
     private final ArrayList<Dice> ListeCerveau;
 
-
     private final Enum.Difficulty difficulty;
     private final ArrayList<Joueur> playersList;
-    private final int tourJoueur;
+    private int tourJoueur;
     private boolean finScore;
     private boolean finPartie;
+    private boolean finShotgun;
 
     public ZombieDice(Enum.Difficulty difficulty) {
         this.difficulty = difficulty;
@@ -30,12 +30,12 @@ public class ZombieDice {
     public void ajoutDes() {
         int[] thresholds = {8, 3, 2};
 
-        if (this.difficulty == Enum.Difficulty.medium) {
+        if (difficulty == Enum.Difficulty.medium) {
             thresholds[0] = 6;
             thresholds[1] = 4;
             thresholds[2] = 3;
         }
-        if (this.difficulty == Enum.Difficulty.hard) {
+        if (difficulty == Enum.Difficulty.hard) {
             thresholds[0] = 4;
             thresholds[1] = 5;
             thresholds[2] = 4;
@@ -51,26 +51,23 @@ public class ZombieDice {
         }
     }
 
-    public boolean nextTurn() {
+    public void nextTurn() {
         reset();
-        int tour = this.tourJoueur;
-        Joueur list = this.playersList.get(tour);
+        Joueur list = this.playersList.get(tourJoueur);
         list.validatePoints();
-        if (list.getScore() >= 13) {
+        if (list.getTotalPoints() >= 13) {
             finScore = true;
         }
 
-        if (finScore && (this.playersList.size() - 1 == tour)) {
+        if (finScore && (this.playersList.size() - 1 == tourJoueur)) {
             finPartie = true;
         }
 
-        tour++;
+        tourJoueur++;
 
-        if (tour >= this.playersList.size()) {
-            tour = 0;
+        if (tourJoueur >= this.playersList.size()) {
+            tourJoueur = 0;
         }
-
-        return finPartie;
     }
 
     public void takeDice() {
@@ -92,6 +89,7 @@ public class ZombieDice {
     }
 
     public void RollDice() {
+        finShotgun = false;
         Random random = new Random();
         int rd = random.nextInt(6);
         int id = this.tourJoueur;
@@ -117,11 +115,9 @@ public class ZombieDice {
             playersList.get(id).setScore_temp(0);
             playersList.get(id).setShotgun(0);
             nextTurn();
+            finShotgun = true;
         }
 
-        if (playersList.get(id).getScore_temp() >= 13) {
-            nextTurn();
-        }
         System.out.println(DesDansLaMain.size());
     }
 
@@ -135,6 +131,18 @@ public class ZombieDice {
     //Getters
     public ArrayList<Joueur> getPlayersList() {
         return playersList;
+    }
+
+    public boolean isFinScore() {
+        return finScore;
+    }
+
+    public boolean isFinPartie() {
+        return finPartie;
+    }
+
+    public boolean isShotgun() {
+        return finShotgun;
     }
 
     public int getTourJoueur() {

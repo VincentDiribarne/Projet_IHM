@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -31,6 +32,9 @@ public class GameController {
 
     @FXML
     private Text tempShotgun;
+
+    @FXML
+    private Text dernierTour;
 
     @FXML
     private Canvas canvasGame;
@@ -60,7 +64,7 @@ public class GameController {
     private void setPlayerText() {
         int id = zombieDice.getTourJoueur();
         String nom = zombieDice.getPlayersList().get(id).getName();
-        int TotalPoint = zombieDice.getPlayersList().get(id).getTotalPoints();
+        int TotalPoint = zombieDice.getPlayersList().get(id).getScore();
 
         String status = "Current player : " +nom;
         String score = "Score : " +TotalPoint;
@@ -76,19 +80,49 @@ public class GameController {
         tempShotgun.setText(String.valueOf(shotgun));
     }
 
-    public void lancerDes() {
+    public void lancerDes() throws IOException {
         zombieDice.takeDice();
         zombieDice.RollDice();
         setShotgunCervo();
         setPlayerText();
+        Alert();
+        finScore();
+        finPartie();
     }
+
+    public void Alert() {
+        if (zombieDice.isShotgun()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("BOOM");
+
+            // alert.setHeaderText("Results:");
+            alert.setContentText("BOOM, trois cerveau, t'es dead \nJoueur suivant");
+
+            alert.showAndWait();
+        }
+    }
+
+    public void finScore() {
+        if (zombieDice.isFinScore()) {
+            dernierTour.setText("Dernier Tour !");
+        }
+    }
+
+    public void finPartie() throws IOException {
+        if (zombieDice.isFinPartie()) {
+            score();
+        }
+    }
+
 
     @FXML
     public void stopTurn() throws IOException{
         gc.clearRect(0,0, canvasGame.getWidth(), canvasGame.getHeight());
-        if(!zombieDice.nextTurn()) {
-            score();
-        }
+        tempShotgun.setText("0");
+        tempScore.setText("0");
+        zombieDice.nextTurn();
+        finPartie();
+        finScore();
         setPlayerText();
     }
 
