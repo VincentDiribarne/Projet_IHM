@@ -14,6 +14,9 @@ import model.*;
 import model.Enum;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class GameController {
     private ZombieDice zombieDice;
@@ -80,6 +83,8 @@ public class GameController {
         Image brain = new Image(getClass().getResource("/Ressources/brain.png").toString());
         Image pas = new Image(getClass().getResource("/Ressources/pas.png").toString());
         double offset_x = 64 + 40;
+
+        Collections.reverse(zombieDice.getGenFaces());
 
         for (int i = 0; i < 3; i++) {
             switch (zombieDice.getGenFaces().get(i)) {
