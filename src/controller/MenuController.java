@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
 
     @FXML
-    private ListView playerList;
+    private ListView<String> playerList;
 
     @FXML
     private TextField addPlayer;
@@ -41,6 +41,7 @@ public class MenuController implements Initializable {
         r2.setToggleGroup(toggle);
         r3.setToggleGroup(toggle);
         toggle.selectToggle(r1);
+        System.out.println(playerList);
     }
 
     @FXML

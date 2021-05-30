@@ -9,6 +9,7 @@ public class ZombieDice {
     private final ArrayList<Dice> DesDisponible;
     private final ArrayList<Dice> DesDansLaMain;
     private final ArrayList<Dice> ListeCerveau;
+    private ArrayList<Enum.DiceFaces> GenFaces;
 
     private final Enum.Difficulty difficulty;
     private final ArrayList<Joueur> playersList;
@@ -24,6 +25,7 @@ public class ZombieDice {
         this.DesDisponible = new ArrayList<>();
         this.ListeCerveau = new ArrayList<>();
         this.DesDansLaMain = new ArrayList<>();
+        this.GenFaces = new ArrayList<>();
         ajoutDes();
     }
 
@@ -89,22 +91,24 @@ public class ZombieDice {
     }
 
     public void RollDice() {
+        GenFaces.clear();
         finShotgun = false;
         Random random = new Random();
         int rd = random.nextInt(6);
         int id = this.tourJoueur;
 
         for (int i = 2; i >= 0; i--) {
-            Enum.DiceFaces GenFaces = DesDansLaMain.get(i).getFaces().get(rd);
-            System.out.println("#"+i + " => " +GenFaces+ " de couleur " +DesDansLaMain.get(i).getColor());
+            Enum.DiceFaces faces =DesDansLaMain.get(i).getFaces().get(rd);
+            GenFaces.add(faces);
+            System.out.println("#"+i + " => " +faces+ " de couleur " +DesDansLaMain.get(i).getColor());
 
-            if (GenFaces == Enum.DiceFaces.cerveau) {
+            if (faces == Enum.DiceFaces.cerveau) {
                 this.playersList.get(id).addPointsTemp(1);
                 System.out.println("Cerveau => " +playersList.get(id).getScore_temp());
                 ListeCerveau.add(DesDansLaMain.remove(i));
             }
 
-            if (GenFaces == Enum.DiceFaces.fusil) {
+            if (faces == Enum.DiceFaces.fusil) {
                 playersList.get(id).addOneShotgun();
                 DesDansLaMain.remove(i);
                 System.out.println("Shotgun =>" +playersList.get(id).getShotgun());
@@ -129,6 +133,12 @@ public class ZombieDice {
     }
 
     //Getters
+
+
+    public ArrayList<Enum.DiceFaces> getGenFaces() {
+        return GenFaces;
+    }
+
     public ArrayList<Joueur> getPlayersList() {
         return playersList;
     }
@@ -147,6 +157,10 @@ public class ZombieDice {
 
     public int getTourJoueur() {
         return tourJoueur;
+    }
+
+    public ArrayList<Dice> getDesDansLaMain() {
+        return DesDansLaMain;
     }
 
     public void addPlayers(List<String> names) {
