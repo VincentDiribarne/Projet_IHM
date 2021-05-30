@@ -9,7 +9,7 @@ public class ZombieDice {
     private final ArrayList<Dice> DesDisponible;
     private final ArrayList<Dice> DesDansLaMain;
     private final ArrayList<Dice> ListeCerveau;
-    private ArrayList<Enum.DiceFaces> GenFaces;
+    private final ArrayList<Enum.DiceFaces> GenFaces;
 
     private final Enum.Difficulty difficulty;
     private final ArrayList<Joueur> playersList;
@@ -118,8 +118,6 @@ public class ZombieDice {
             nextTurn();
             finShotgun = true;
         }
-
-        System.out.println(DesDansLaMain.size());
     }
 
     public void reset() {
