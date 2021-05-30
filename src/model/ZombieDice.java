@@ -98,20 +98,17 @@ public class ZombieDice {
         int id = this.tourJoueur;
 
         for (int i = 2; i >= 0; i--) {
-            Enum.DiceFaces faces =DesDansLaMain.get(i).getFaces().get(rd);
+            Enum.DiceFaces faces = DesDansLaMain.get(i).getFaces().get(rd);
             GenFaces.add(faces);
-            System.out.println("#"+i + " => " +faces+ " de couleur " +DesDansLaMain.get(i).getColor());
 
             if (faces == Enum.DiceFaces.cerveau) {
                 this.playersList.get(id).addPointsTemp(1);
-                System.out.println("Cerveau => " +playersList.get(id).getScore_temp());
                 ListeCerveau.add(DesDansLaMain.remove(i));
             }
 
             if (faces == Enum.DiceFaces.fusil) {
                 playersList.get(id).addOneShotgun();
                 DesDansLaMain.remove(i);
-                System.out.println("Shotgun =>" +playersList.get(id).getShotgun());
             }
         }
 
@@ -133,8 +130,6 @@ public class ZombieDice {
     }
 
     //Getters
-
-
     public ArrayList<Enum.DiceFaces> getGenFaces() {
         return GenFaces;
     }

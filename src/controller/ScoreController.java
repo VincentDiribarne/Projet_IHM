@@ -68,5 +68,4 @@ public class ScoreController {
         primaryStage.show();
         Util.deplacementFenetre(root, primaryStage);
     }
-
 }
