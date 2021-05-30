@@ -1,16 +1,11 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Joueur;
-import model.Util;
 import model.ZombieDice;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,17 +50,5 @@ public class ScoreController {
             troisieme.setVisible(true);
             troisieme.setText(joueur.get(2).getName());
         }
-    }
-
-    @FXML
-    public void rejouer() throws IOException {
-        AnchorPane root = FXMLLoader.load(getClass().getResource("../view/menu.fxml"));
-        Scene scene = new Scene(root);
-
-        Stage primaryStage = (Stage) score.getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
-        Util.deplacementFenetre(root, primaryStage);
     }
 }
