@@ -40,7 +40,6 @@ public class MenuController implements Initializable {
         r1.setToggleGroup(toggle);
         r2.setToggleGroup(toggle);
         r3.setToggleGroup(toggle);
-        toggle.selectToggle(r1);
     }
 
     @FXML
@@ -74,7 +73,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void Lancement() throws IOException {
-        if (playerList.getItems().size() > 1) {
+        if (playerList.getItems().size() > 1 && (difficulty != null)) {
             AnchorPane root = Main.getGameFXML().load();
             Scene scene = new Scene(root);
 

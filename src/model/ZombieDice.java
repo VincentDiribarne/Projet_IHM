@@ -128,6 +128,10 @@ public class ZombieDice {
     }
 
     //Getters
+    public Enum.Difficulty getDifficulty() {
+        return difficulty;
+    }
+
     public ArrayList<Enum.DiceFaces> getGenFaces() {
         return GenFaces;
     }

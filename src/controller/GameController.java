@@ -35,6 +35,15 @@ public class GameController {
     private Text dernierTour;
 
     @FXML
+    private Text desVert;
+
+    @FXML
+    private Text desJaune;
+
+    @FXML
+    private Text desRouge;
+
+    @FXML
     private Canvas canvasGame;
 
     public void initialize() {
@@ -51,6 +60,7 @@ public class GameController {
         zombieDice = new ZombieDice(difficulty);
         zombieDice.addPlayers(players);
         setPlayerText();
+        Difficulté(difficulty);
     }
 
     private void CanvasCouleur() {
@@ -62,9 +72,15 @@ public class GameController {
 
         for (int i = 2; i >= 0; i--) {
             switch (zombieDice.getDesDansLaMain().get(i).getColor()) {
-                case "yellow" -> gc.drawImage(yellow, i * offset_x, 0, 64, 64);
-                case "green" -> gc.drawImage(green, i * offset_x, 0, 64, 64);
-                case "red" -> gc.drawImage(red, i * offset_x, 0, 64, 64);
+                case "yellow":
+                    gc.drawImage(yellow, i * offset_x, 0, 64, 64);
+                    break;
+                case "green":
+                    gc.drawImage(green, i * offset_x, 0, 64, 64);
+                    break;
+                case "red":
+                    gc.drawImage(red, i * offset_x, 0, 64, 64);
+                    break;
             }
         }
     }
@@ -79,9 +95,15 @@ public class GameController {
 
         for (int i = 0; i < 3; i++) {
             switch (zombieDice.getGenFaces().get(i)) {
-                case cerveau -> gc.drawImage(brain, i * offset_x, 0, 64, 64);
-                case fusil -> gc.drawImage(shotgun, i * offset_x, 0, 64, 64);
-                case pas -> gc.drawImage(pas, i * offset_x, 0, 64, 64);
+                case cerveau:
+                    gc.drawImage(brain, i * offset_x, 0, 64, 64);
+                    break;
+                case fusil:
+                    gc.drawImage(shotgun, i * offset_x, 0, 64, 64);
+                    break;
+                case pas:
+                    gc.drawImage(pas, i * offset_x, 0, 64, 64);
+                    break;
             }
         }
     }
@@ -151,6 +173,26 @@ public class GameController {
         finPartie();
         finScore();
         setPlayerText();
+    }
+
+    public void Difficulté(Enum.Difficulty difficulty) {
+        switch (difficulty) {
+            case easy :
+                desVert.setText("8");
+                desJaune.setText("3");
+                desRouge.setText("2");
+                break;
+            case medium:
+                desVert.setText("6");
+                desJaune.setText("4");
+                desRouge.setText("3");
+                break;
+            case hard:
+                desVert.setText("4");
+                desJaune.setText("5");
+                desRouge.setText("4");
+                break;
+        }
     }
 
 
