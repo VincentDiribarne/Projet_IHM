@@ -10,30 +10,30 @@ public class Dice {
                 this.color = color;
                 this.faces = new ArrayList<>();
                 switch (color.toLowerCase()) {
-                        case "green" -> {
+                        case "green":
                                 this.faces.add(Enum.DiceFaces.cerveau);
                                 this.faces.add(Enum.DiceFaces.cerveau);
                                 this.faces.add(Enum.DiceFaces.cerveau);
                                 this.faces.add(Enum.DiceFaces.pas);
                                 this.faces.add(Enum.DiceFaces.pas);
                                 this.faces.add(Enum.DiceFaces.fusil);
-                        }
-                        case "yellow" -> {
+                                break;
+                        case "yellow":
                                 this.faces.add(Enum.DiceFaces.cerveau);
                                 this.faces.add(Enum.DiceFaces.cerveau);
                                 this.faces.add(Enum.DiceFaces.pas);
                                 this.faces.add(Enum.DiceFaces.pas);
                                 this.faces.add(Enum.DiceFaces.fusil);
                                 this.faces.add(Enum.DiceFaces.fusil);
-                        }
-                        case "red" -> {
+                                break;
+                        case "red":
                                 this.faces.add(Enum.DiceFaces.cerveau);
                                 this.faces.add(Enum.DiceFaces.pas);
                                 this.faces.add(Enum.DiceFaces.pas);
                                 this.faces.add(Enum.DiceFaces.fusil);
                                 this.faces.add(Enum.DiceFaces.fusil);
                                 this.faces.add(Enum.DiceFaces.fusil);
-                        }
+                                break;
                 }
         }
 

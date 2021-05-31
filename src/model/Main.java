@@ -19,9 +19,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Loader
-        endFXML = new FXMLLoader(getClass().getResource("../view/end.fxml"));
-        gameFXML = new FXMLLoader(getClass().getResource("../view/game.fxml"));
-        menuFXML = new FXMLLoader(getClass().getResource("../view/Menu.fxml"));
+        endFXML = new FXMLLoader(getClass().getResource("/view/End.fxml"));
+        gameFXML = new FXMLLoader(getClass().getResource("/view/Game.fxml"));
+        menuFXML = new FXMLLoader(getClass().getResource("/view/Menu.fxml"));
 
         //Page de Menu
         StackPane root = new StackPane();
@@ -35,7 +35,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 800, 500);
         scene.setFill(Color.TRANSPARENT);
 
-        primaryStage.getIcons().add(new Image("./Ressources/Zombie.png"));
+        primaryStage.getIcons().add(new Image("/Ressources/Zombie.png"));
         primaryStage.setTitle("Zombie Dice");
 
         primaryStage.setScene(scene);

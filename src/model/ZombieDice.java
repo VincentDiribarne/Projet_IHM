@@ -128,8 +128,6 @@ public class ZombieDice {
     }
 
     //Getters
-
-
     public Enum.Difficulty getDifficulty() {
         return difficulty;
     }

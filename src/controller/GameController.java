@@ -72,9 +72,15 @@ public class GameController {
 
         for (int i = 2; i >= 0; i--) {
             switch (zombieDice.getDesDansLaMain().get(i).getColor()) {
-                case "yellow" -> gc.drawImage(yellow, i * offset_x, 0, 64, 64);
-                case "green" -> gc.drawImage(green, i * offset_x, 0, 64, 64);
-                case "red" -> gc.drawImage(red, i * offset_x, 0, 64, 64);
+                case "yellow":
+                    gc.drawImage(yellow, i * offset_x, 0, 64, 64);
+                    break;
+                case "green":
+                    gc.drawImage(green, i * offset_x, 0, 64, 64);
+                    break;
+                case "red":
+                    gc.drawImage(red, i * offset_x, 0, 64, 64);
+                    break;
             }
         }
     }
@@ -89,9 +95,15 @@ public class GameController {
 
         for (int i = 0; i < 3; i++) {
             switch (zombieDice.getGenFaces().get(i)) {
-                case cerveau -> gc.drawImage(brain, i * offset_x, 0, 64, 64);
-                case fusil -> gc.drawImage(shotgun, i * offset_x, 0, 64, 64);
-                case pas -> gc.drawImage(pas, i * offset_x, 0, 64, 64);
+                case cerveau:
+                    gc.drawImage(brain, i * offset_x, 0, 64, 64);
+                    break;
+                case fusil:
+                    gc.drawImage(shotgun, i * offset_x, 0, 64, 64);
+                    break;
+                case pas:
+                    gc.drawImage(pas, i * offset_x, 0, 64, 64);
+                    break;
             }
         }
     }
