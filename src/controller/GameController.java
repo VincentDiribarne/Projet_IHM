@@ -35,6 +35,15 @@ public class GameController {
     private Text dernierTour;
 
     @FXML
+    private Text desVert;
+
+    @FXML
+    private Text desJaune;
+
+    @FXML
+    private Text desRouge;
+
+    @FXML
     private Canvas canvasGame;
 
     public void initialize() {
@@ -51,6 +60,7 @@ public class GameController {
         zombieDice = new ZombieDice(difficulty);
         zombieDice.addPlayers(players);
         setPlayerText();
+        Difficulté(difficulty);
     }
 
     private void CanvasCouleur() {
@@ -151,6 +161,26 @@ public class GameController {
         finPartie();
         finScore();
         setPlayerText();
+    }
+
+    public void Difficulté(Enum.Difficulty difficulty) {
+        switch (difficulty) {
+            case easy :
+                desVert.setText("8");
+                desJaune.setText("3");
+                desRouge.setText("2");
+                break;
+            case medium:
+                desVert.setText("6");
+                desJaune.setText("4");
+                desRouge.setText("3");
+                break;
+            case hard:
+                desVert.setText("4");
+                desJaune.setText("5");
+                desRouge.setText("4");
+                break;
+        }
     }
 
 
